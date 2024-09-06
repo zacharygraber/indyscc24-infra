@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "login" {
 
     security_groups = ["terraform_ssh_ping", "default"]
 
-    network = {
+    network {
         name = "auto_allocated_network"
     }
 
@@ -26,9 +26,4 @@ resource "openstack_networking_floatingip_v2" "terraform_floatingip_login" {
 resource "openstack_compute_floatingip_associate_v2" "terraform_floatingip_assoc_login" {
     floating_ip = "${openstack_networking_floatingip_v2.terraform_floatingip_login.address}"
     instance_id = "${openstack_compute_instance_v2.login.id}"
-}
-
-output "floating_ip_login" {
-  value = openstack_networking_floatingip_v2.terraform_floatingip_login.address
-  description = "Public IP for ${var.team_name} login node"
 }
