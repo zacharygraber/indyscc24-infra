@@ -1,3 +1,17 @@
+# Create a port on the subnet made in subnet.tf
+resource "openstack_networking_port_v2" "login_port" {
+    name           = "login-node-port-${var.team_name}"
+    network_id     = var.auto_allocated_network_id
+    admin_state_up = "true"
+
+    fixed_ip {
+        subnet_id = openstack_networking_subnet_v2.indyscc_subnet.id
+    }
+
+    depends_on = [ openstack_networking_subnet_v2.indyscc_subnet ]
+}
+
+# Create the login node
 resource "openstack_compute_instance_v2" "login" {
     name = "${var.team_name}-login"
     image_name = "Featured-RockyLinux9"
@@ -7,10 +21,10 @@ resource "openstack_compute_instance_v2" "login" {
     security_groups = ["terraform_ssh_ping", "default"]
 
     network {
-        name = "auto_allocated_network"
+        port = openstack_networking_port_v2.login_port.id
     }
 
-    depends_on = [ openstack_compute_secgroup_v2.terraform_ssh_ping ]
+    depends_on = [ openstack_compute_secgroup_v2.terraform_ssh_ping, openstack_networking_port_v2.login_port ]
 
     metadata = {
         terraform_controlled = "yes"
