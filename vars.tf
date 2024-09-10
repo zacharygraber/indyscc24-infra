@@ -1,11 +1,21 @@
-variable "team_name" {
-    default = "indyscc"
-}
-
-variable "key_pair" {
-    default = "OVERRIDE_ME_IN_TFVARS"
-}
-
 variable "auto_allocated_network_id" {
-    default = "DOES_NOT_EXIST"
+    type = string
+}
+
+variable "subnet_pool_id" {
+    type = string
+}
+
+variable "router_id" {
+    type = string
+}
+
+variable "default_security_group_id" {
+    type = string
+}
+
+variable "teams" {
+    type = map(object({
+        ssh_pubkeys = set(string)
+    }))
 }
