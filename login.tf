@@ -24,6 +24,8 @@ resource "openstack_compute_instance_v2" "login_nodes" {
     flavor_name = "m3.small"
     key_pair = "indyscc-${each.key}"
 
+    user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
+
     security_groups = ["terraform_ssh_ping", "default"]
 
     network {

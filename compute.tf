@@ -24,6 +24,8 @@ resource "openstack_compute_instance_v2" "cpu0_nodes" {
     flavor_name = "m3.small"
     key_pair = "indyscc-${each.key}"
 
+    user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
+
     network {
         port = openstack_networking_port_v2.cpu0_ports[each.key].id
     }
