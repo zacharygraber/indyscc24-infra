@@ -65,7 +65,7 @@
     ansible.builtin.get_url:
       url: https://gist.githubusercontent.com/zacharygraber/935298aaf92b8d220e870075413b2be6/raw/e31ca121c2e89d330a19da4dac463b4fb9b6d56b/README.txt
       dest: "{{ item }}"
-      mode: 664
+      mode: '664'
     with_items:
       - /home/rocky/README.txt
       - /root/README.txt
