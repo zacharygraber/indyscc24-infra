@@ -11,5 +11,5 @@ runcmd:
       --checkout "master" \
       --directory /opt/instance-config-mgt \
       -i /opt/instance-config-mgt/ansible/hosts \
-      -e ceph_access_key="${ceph_access_key}"
+      -e ceph_access_key="${ceph_access_key}" \
       /opt/instance-config-mgt/ansible/playbook.yml
