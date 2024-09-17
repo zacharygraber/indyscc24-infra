@@ -21,7 +21,7 @@ resource "openstack_compute_instance_v2" "cpu0_nodes" {
 
     name = "${each.key}-cpu0"
     image_name = "Featured-RockyLinux9"
-    flavor_name = "m3.small"
+    flavor_name = "m3.xl"
     key_pair = "indyscc-${each.key}"
 
     user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
@@ -60,7 +60,7 @@ resource "openstack_compute_instance_v2" "cpu1_nodes" {
 
     name = "${each.key}-cpu1"
     image_name = "Featured-RockyLinux9"
-    flavor_name = "m3.small"
+    flavor_name = "m3.xl"
     key_pair = "indyscc-${each.key}"
 
     user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
@@ -99,7 +99,7 @@ resource "openstack_compute_instance_v2" "cpu2_nodes" {
 
     name = "${each.key}-cpu2"
     image_name = "Featured-RockyLinux9"
-    flavor_name = "m3.small"
+    flavor_name = "m3.xl"
     key_pair = "indyscc-${each.key}"
 
     user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
@@ -138,7 +138,7 @@ resource "openstack_compute_instance_v2" "cpu3_nodes" {
 
     name = "${each.key}-cpu3"
     image_name = "Featured-RockyLinux9"
-    flavor_name = "m3.small"
+    flavor_name = "m3.xl"
     key_pair = "indyscc-${each.key}"
 
     user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
@@ -177,7 +177,7 @@ resource "openstack_compute_instance_v2" "gpu0_nodes" {
 
     name = "${each.key}-gpu0"
     image_name = "Featured-RockyLinux9"
-    flavor_name = "g3.small"
+    flavor_name = "g3.large"
     key_pair = "indyscc-${each.key}"
 
     user_data = templatefile("cloud-init.yml.tftpl", {ceph_access_key = var.ceph_access_key})
