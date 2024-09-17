@@ -20,6 +20,7 @@ variable "ceph_access_key" {
 
 variable "teams" {
     type = map(object({
+        app_cred_secret = string
         ssh_pubkeys = set(string)
     }))
 }
