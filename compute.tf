@@ -1,6 +1,6 @@
 # Create a port on the subnet made in subnet.tf for each of the 20 instances
 resource "openstack_networking_port_v2" "cpu_ports" {
-    count = 20
+    count = 30
 
     name           = "${var.team_name}-cpu${count.index}"
     network_id     = var.auto_allocated_network_id
@@ -17,7 +17,7 @@ resource "openstack_networking_port_v2" "cpu_ports" {
 }
 
 resource "openstack_compute_instance_v2" "cpu_nodes" {
-    count = 20
+    count = 30
 
     name = "${var.team_name}-cpu${count.index}"
     image_name = "snapshot-${var.team_name}-cpu"
