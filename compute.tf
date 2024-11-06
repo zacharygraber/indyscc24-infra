@@ -21,7 +21,7 @@ resource "openstack_compute_instance_v2" "cpu_nodes" {
 
     name = "${var.team_name}-cpu${count.index}"
     image_name = "snapshot-${var.team_name}-cpu"
-    flavor_name = "m3.tiny"
+    flavor_name = "m3.xl"
     key_pair = "zegraber-test-api-key"
 
     network {
