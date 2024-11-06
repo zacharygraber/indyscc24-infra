@@ -14,11 +14,8 @@ variable "default_security_group_id" {
     type = string
 }
 
-variable "teams" {
-    type = map(object({
-        app_cred_secret = string
-        ssh_pubkeys = set(string)
-    }))
+variable "team_name" {
+    type = string
 }
 
 variable "admin_ssh_pubkey" {
