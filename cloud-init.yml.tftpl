@@ -8,7 +8,7 @@ runcmd:
     ansible-galaxy collection install ansible.posix
     ansible-pull \
       --url "https://github.com/zacharygraber/indyscc24-infra.git" \
-      --checkout "master" \
+      --checkout "hero-hpl" \
       --directory /opt/instance-config-mgt \
       -i /opt/instance-config-mgt/ansible/hosts \
       -e ceph_access_key="${ceph_access_key}" \

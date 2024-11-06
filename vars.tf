@@ -14,10 +14,6 @@ variable "default_security_group_id" {
     type = string
 }
 
-variable "ceph_access_key" {
-    type = string
-}
-
 variable "teams" {
     type = map(object({
         app_cred_secret = string
