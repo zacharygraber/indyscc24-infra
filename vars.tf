@@ -21,3 +21,7 @@ variable "team_name" {
 variable "admin_ssh_pubkey" {
     type = string
 }
+
+variable "app_cred_secret" {
+    type = string
+}
