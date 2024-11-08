@@ -53,6 +53,22 @@ resource "openstack_identity_application_credential_v3" "team_scoped_credentials
             method  = "GET"
         }
     }
+    dynamic "access_rules" {
+        for_each = range(30)
+        content {
+            path = "/v2.1/servers/${openstack_compute_instance_v2.cpu_nodes[access_rules.value].id}/action"
+            service = "compute"
+            method  = "POST"
+        }
+    }
+    dynamic "access_rules" {
+        for_each = range(30)
+        content {
+            path = "/v2.1/servers/${openstack_compute_instance_v2.cpu_nodes[access_rules.value].id}/remote-consoles"
+            service = "compute"
+            method  = "POST"
+        }
+    }
 
     # access rules for cpu node by name
 
@@ -62,6 +78,22 @@ resource "openstack_identity_application_credential_v3" "team_scoped_credentials
             path = "/v2.1/servers/${openstack_compute_instance_v2.cpu_nodes[access_rules.value].name}"
             service = "compute"
             method  = "GET"
+        }
+    }
+    dynamic "access_rules" {
+        for_each = range(30)
+        content {
+            path = "/v2.1/servers/${openstack_compute_instance_v2.cpu_nodes[access_rules.value].name}/action"
+            service = "compute"
+            method  = "POST"
+        }
+    }
+    dynamic "access_rules" {
+        for_each = range(30)
+        content {
+            path = "/v2.1/servers/${openstack_compute_instance_v2.cpu_nodes[access_rules.value].name}/remote-consoles"
+            service = "compute"
+            method  = "POST"
         }
     }
 }
