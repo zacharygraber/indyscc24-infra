@@ -37,11 +37,11 @@
     when: gpu_return.rc == 0
 
   - name: GPU driver module enabled if GPU is present
-    ansible.builtin.command: "dnf module enable -y nvidia-driver:560"
+    ansible.builtin.command: "dnf module enable -y nvidia-driver:560-dkms"
     when: gpu_return.rc == 0
 
   - name: GPU driver installed if GPU is present
-    ansible.builtin.command: "dnf install -y nvidia-driver"
+    ansible.builtin.command: "dnf module install -y nvidia-driver:560-dkms"
     when: gpu_return.rc == 0
 
   - name: Submissions server credential file templated
@@ -54,3 +54,7 @@
 
   - name: Timezone set 
     ansible.builtin.command: "timedatectl set-timezone America/Indianapolis"
+
+  - name: System reboot if GPU drivers were installed
+    ansible.builtin.reboot:
+    when: gpu_return.rc == 0
