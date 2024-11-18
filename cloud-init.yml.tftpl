@@ -8,8 +8,11 @@ runcmd:
     ansible-galaxy collection install ansible.posix
     ansible-pull \
       --url "https://github.com/zacharygraber/indyscc24-infra.git" \
-      --checkout "hero-hpl" \
+      --checkout "48hr" \
       --directory /opt/instance-config-mgt \
       -i /opt/instance-config-mgt/ansible/hosts \
       -e ceph_access_key="${ceph_access_key}" \
+      -e team_name="${team_name}" \
+      -e submission_server_passphrase="${submission_server_passphrase}" \
+      -e share_export_location="${share_export_location}" \
       /opt/instance-config-mgt/ansible/playbook.yml

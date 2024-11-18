@@ -18,13 +18,20 @@ resource "openstack_compute_instance_v2" "login_node" {
     name = "${var.team_name}-login"
     image_name = "snapshot-${var.team_name}-login"
     flavor_name = "m3.small"
-    key_pair = "zegraber-test-api-key"
+    key_pair = "indyscc-admins"
+
+    user_data = templatefile("cloud-init.yml.tftpl", {
+        ceph_access_key = openstack_sharedfilesystem_share_access_v2.share_access.access_key,
+        team_name = var.team_name,
+        submission_server_passphrase = var.app_cred_secret,
+        share_export_location = openstack_sharedfilesystem_share_v2.scratch_share.export_locations[0].path
+    })
 
     network {
         port = openstack_networking_port_v2.login_port.id
     }
 
-    depends_on = [ openstack_compute_secgroup_v2.terraform_ssh_ping, openstack_networking_port_v2.login_port ]
+    depends_on = [ openstack_compute_secgroup_v2.terraform_ssh_ping, openstack_networking_port_v2.login_port, openstack_sharedfilesystem_share_v2.scratch_share ]
 
     metadata = {
         terraform_controlled = "yes"

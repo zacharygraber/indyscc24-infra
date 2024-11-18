@@ -25,3 +25,7 @@ variable "admin_ssh_pubkey" {
 variable "app_cred_secret" {
     type = string
 }
+
+variable "cpu_node_count" {
+    type = number
+}
